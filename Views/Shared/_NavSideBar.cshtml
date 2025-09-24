@@ -1,0 +1,282 @@
+@* <aside
+  :class="sidebarToggle ? 'translate-x-0 lg:w-[90px]' : '-translate-x-full'"
+  class="sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-gray-200 bg-white px-5 dark:border-gray-800 dark:bg-gray-900 lg:static lg:translate-x-0"
+> *@
+<aside
+  :class="sidebarToggle ? 'translate-x-0 lg:w-[90px]' : '-translate-x-full'"
+  class="sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-brand-200 bg-brand-950 px-5 dark:border-gray-800 dark:bg-gray-900 lg:static lg:translate-x-0"
+>
+  <!-- SIDEBAR HEADER -->
+   <div
+    :class="sidebarToggle ? 'justify-center' : 'justify-between'"
+    class="flex items-center gap-2 pt-8 sidebar-header pb-7"
+  >
+    <a href="/">
+      <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
+        @* <img class="dark:hidden" src="/img/logo/logo.svg" alt="Logo" /> *@
+        <img class="dark:hidden" src="/img/logo/logo-dark.png" alt="Logo" />
+        <img
+          class="hidden dark:block"
+          src="/img/logo/logo-dark.png"
+          alt="Logo"
+        />
+      </span>
+
+      <img
+        class="logo-icon"
+        :class="sidebarToggle ? 'lg:block' : 'hidden'"
+        src="/img/logo/logo-dark.png"
+        alt="Logo"
+      />
+    </a>
+  </div>
+  <!-- SIDEBAR HEADER -->
+
+  <div
+    class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar"
+  >
+    <!-- Sidebar Menu -->
+    <nav x-data="{selected: $persist('Dashboard')}">
+      <!-- Menu Group -->
+      <div>
+        <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400 ">
+          <span
+            class="menu-group-title"
+            :class="sidebarToggle ? 'lg:hidden' : ''"
+          >
+            MENU
+          </span>
+
+          <i class="iconify mx-auto menu-group-icon w-6 h-6 flex-shrink-0"
+            :class="sidebarToggle ? 'lg:block hidden' : 'hidden'"
+            data-icon="material-symbols-light:more-horiz-rounded"
+          ></i>
+        </h3>
+
+        <ul class="flex flex-col gap-4 mb-6">
+          <!-- Menu Item Dashboard (simplified: direct link) -->
+          <li>
+            <a
+              asp-controller="Dashboard"
+              asp-action="Index"
+              class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+              :class=" page === 'dashboard' ? 'menu-item-active' : 'menu-item-inactive'"
+            >
+              <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:grid-view-outline-rounded"
+                :class="(page === 'dashboard') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+              ></i>
+
+              <span
+                class="menu-item-text"
+                :class="sidebarToggle ? 'lg:hidden' : ''"
+              >
+                Dashboard
+              </span>
+            </a>
+          </li>
+          <!-- End Menu Item Dashboard -->
+
+        
+
+          <!-- Menu Item Pages -->
+          <li>
+            <a
+              href="#"
+              @@click.prevent="selected = (selected === 'Pages' ? '':'Pages')"
+              class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+              :class="(selected === 'Pages') || (page === 'fileManager' || page === 'pricingTables' || page === 'blank' || page === 'page404' || page === 'page500' || page === 'page503' || page === 'success' || page === 'faq' || page === 'comingSoon' || page === 'maintenance') ? 'menu-item-active' : 'menu-item-inactive'"
+            >
+              <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:content-copy-outline" 
+                :class="(selected === 'Pages') || (page === 'fileManager' || page === 'pricingTables' || page === 'blank' || page === 'page404' || page === 'page500' || page === 'page503' || page === 'success' || page === 'faq' || page === 'comingSoon' || page === 'maintenance') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+              ></i>
+
+              <span
+                class="menu-item-text "
+                :class="sidebarToggle ? 'lg:hidden' : ''"
+              >
+                Pages
+              </span>
+
+              <i class="iconify menu-item-arrow absolute right-2.5 top-1/2 -translate-y-1/2 stroke-current" data-icon="material-symbols-light:expand-more"
+                :class="[(selected === 'Pages') ? 'menu-item-arrow-active' : 'menu-item-arrow-inactive', sidebarToggle ? 'lg:hidden' : '' ]"
+              ></i>
+            </a>
+
+            <!-- Dropdown Menu Start -->
+            <div
+              class="overflow-hidden transform translate"
+              :class="(selected === 'Pages') ? 'block' :'hidden'"
+            >
+              <ul
+                :class="sidebarToggle ? 'lg:hidden' : 'flex'"
+                class="flex flex-col gap-1 mt-2 menu-dropdown pl-9"
+              >
+                <li>
+                  <a
+                    href="blank.html"
+                    class="menu-dropdown-item group text-gray-300"
+                    :class="page === 'blank' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                  >
+                    Blank Page
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="404.html"
+                    class="menu-dropdown-item group text-gray-300"
+                    :class="page === 'page404' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                  >
+                    404 Error
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- Dropdown Menu End -->
+          </li>
+          <!-- Menu Item Pages -->
+        </ul>
+      </div>
+
+      <div> 
+
+          <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400 ">
+            <span
+              class="menu-group-title"
+              :class="sidebarToggle ? 'lg:hidden' : ''"
+            >
+              TRAINING
+            </span>
+
+            <i class="iconify mx-auto menu-group-icon w-6 h-6 flex-shrink-0"
+              :class="sidebarToggle ? 'lg:block hidden' : 'hidden'"
+              data-icon="material-symbols-light:more-horiz-rounded"
+            ></i>
+          </h3>
+
+          <ul class="flex flex-col gap-4 mb-6">
+
+            <!-- Menu Item Training -->
+            <li>
+              <a
+                asp-controller="TrainingEvaluation"
+                asp-action="Index"
+                class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+                :class=" page === 'trainingEvaluation' ? 'menu-item-active' : 'menu-item-inactive'"
+              >
+                <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:assessment-outline" 
+                  :class="page === 'trainingEvaluation' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                ></i>
+
+                <span
+                  class="menu-item-text"
+                  :class="sidebarToggle ? 'lg:hidden' : ''"
+                >
+                  Training Evaluation
+                </span>
+              </a>
+            </li>
+             <li>
+              <a
+                asp-controller="User"
+                asp-action="Index"
+                class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+                :class=" page === 'user' ? 'menu-item-active' : 'menu-item-inactive'"
+              >
+                <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:person-outline" 
+                  :class="page === 'user' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                ></i>
+
+                <span
+                  class="menu-item-text"
+                  :class="sidebarToggle ? 'lg:hidden' : ''"
+                >
+                  Training Evaluation Form - Superior
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                asp-controller="User"
+                asp-action="Index"
+                class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+                :class=" page === 'user' ? 'menu-item-active' : 'menu-item-inactive'"
+              >
+                <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:person-outline" 
+                  :class="page === 'user' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                ></i>
+
+                <span
+                  class="menu-item-text"
+                  :class="sidebarToggle ? 'lg:hidden' : ''"
+                >
+                  Training Application Form
+                </span>
+              </a>
+            </li>
+          <!-- Menu Item Training -->
+          
+        </ul>
+      
+      </div>
+
+      <!-- Others Group -->
+      <div>
+        <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400">
+          <span
+            class="menu-group-title"
+            :class="sidebarToggle ? 'lg:hidden' : ''"
+          >
+            Settings
+          </span>
+
+          <i class="iconify mx-auto menu-group-icon w-6 h-6 flex-shrink-0"
+            :class="sidebarToggle ? 'lg:block hidden' : 'hidden'"
+            data-icon="material-symbols-light:more-horiz-rounded"
+          ></i>
+        </h3>
+
+        <ul class="flex flex-col gap-4 mb-6">
+
+            <!-- Menu Item Profile -->
+          <li>
+            <a
+              asp-controller="User"
+              asp-action="Index"
+              class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+              :class=" page === 'user' ? 'menu-item-active' : 'menu-item-inactive'"
+            >
+              <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:person-outline" 
+                :class="page === 'user' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+              ></i>
+
+              <span
+                class="menu-item-text"
+                :class="sidebarToggle ? 'lg:hidden' : ''"
+              >
+                User
+              </span>
+            </a>
+          </li>
+          <!-- Menu Item Profile -->
+          
+        </ul>
+      </div>
+    </nav>
+    <!-- Sidebar Menu -->
+
+    <!-- Promo Box -->
+    @* <div
+      :class="sidebarToggle ? 'lg:hidden' : ''"
+      class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]"
+    >
+      <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">
+        #1 Tailwind CSS Dashboard
+      </h3>
+      <p class="mb-4 text-gray-500 text-theme-sm dark:text-gray-400">
+        Leading Tailwind CSS Admin Template with 400+ UI Component and Pages.
+      </p>
+
+    </div> *@
+    <!-- Promo Box -->
+  </div>
+</aside>

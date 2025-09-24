@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en"
+     >
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - .NET 8 Boilerplate</title>
+    <link rel="stylesheet" href="~/css/tailwind.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/dotnet-mvc-boilerplate.styles.css" asp-append-version="true" /> *@
+</head>
+<body 
+    x-data="{ page: '@(ViewData["Module"]?.ToString()?.ToLower())', loaded: true, darkMode: false, stickyMenu: false, sidebarToggle: false, scrollTop: false, menuToggle: false }"
+     x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark bg-gray-900': darkMode === true}"
+    class="relative flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <partial name="_NavSideBar" />
+    <!-- Sidebar -->
+    
+    @* <div class="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto"> *@
+    <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <!-- Header -->
+        <partial name="_NavHeader" />
+        <!-- Header -->
+
+        <main class="mb-auto">
+            @RenderBody()
+        </main>
+
+        <!-- Footer -->
+        <partial name="_Footer" />
+        <!-- Footer -->
+    </div>
+
+    <script src="~/js/bundle.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

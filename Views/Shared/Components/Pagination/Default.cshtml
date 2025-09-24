@@ -1,0 +1,157 @@
+@model dotnet8_mvc_auth_boilerplate.Models.PaginationInfo
+
+@{
+    int startPage = 1;
+    int endPage = 1;
+    if (Model != null && Model.TotalPages > 1)
+    {
+        startPage = Math.Max(1, Model.CurrentPage - 2);
+        endPage = Math.Min(Model.TotalPages, Model.CurrentPage + 2);
+    }
+    
+    // Calculate showing range
+    int startEntry = 0;
+    int endEntry = 0;
+    if (Model != null && Model.TotalItems > 0)
+    {
+        startEntry = ((Model.CurrentPage - 1) * Model.PageSize) + 1;
+        endEntry = Math.Min(Model.CurrentPage * Model.PageSize, Model.TotalItems);
+    }
+}
+
+@if (Model != null)
+{
+    <div class="py-4 px-6">
+        <div class="flex items-center justify-between">
+            @* <div class="flex flex-col xl:flex-row xl:items-center xl:justify-between"> *@
+                @* Showing entries info - aligned left *@
+                @if (Model.TotalItems > 0)
+            {
+                <div class="text-left">
+                    <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        Showing @startEntry to @endEntry of @Model.TotalItems entries
+                    </span>
+                </div>
+            }
+            else
+            {
+                <div></div>
+            }
+            
+            @* Pagination controls - aligned right *@
+            <div class="flex items-center space-x-1">
+            @if (Model.TotalPages > 1)
+            {
+                @* Previous button *@
+                @if (Model.HasPrevious)
+                {
+                    <a asp-action="@Model.ActionName" asp-controller="@Model.ControllerName" asp-route-page="@(Model.CurrentPage - 1)" asp-route-pageSize="@Model.PageSize"
+                       class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-white/[0.05] dark:hover:text-brand-500 transition-colors duration-200">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Previous
+                    </a>
+                }
+                else
+                {
+                    <span class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Previous
+                    </span>
+                }
+
+                @* Page numbers *@
+                @if (startPage > 1)
+                {
+                    <a asp-action="@Model.ActionName" asp-controller="@Model.ControllerName" asp-route-page="1" asp-route-pageSize="@Model.PageSize"
+                       class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-white/[0.05] dark:hover:text-brand-500 transition-colors duration-200">
+                        1
+                    </a>
+                    @if (startPage > 2)
+                    {
+                        <span class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            ...
+                        </span>
+                    }
+                }
+
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    @if (i == Model.CurrentPage)
+                    {
+                        <span class="hover:text-brand-500 dark:hover:text-brand-500 flex h-10 w-10 items-center justify-center border border-gray-300 rounded-lg text-sm font-medium hover:bg-blue-500/[0.08] bg-blue-500/[0.08] dark:border-gray-700 dark:bg-blue-500/[0.08] text-brand-500">
+                            @i
+                        </span>
+                    }
+                    else
+                    {
+                        <a asp-action="@Model.ActionName" asp-controller="@Model.ControllerName" asp-route-page="@i" asp-route-pageSize="@Model.PageSize"
+                           class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.05] dark:hover:text-brand-500 transition-colors duration-200">
+                            @i
+                        </a>
+                    }
+                }
+
+                @if (endPage < Model.TotalPages)
+                {
+                    @if (endPage < Model.TotalPages - 1)
+                    {
+                        <span class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            ...
+                        </span>
+                    }
+                    <a asp-action="@Model.ActionName" asp-controller="@Model.ControllerName" asp-route-page="@Model.TotalPages" asp-route-pageSize="@Model.PageSize"
+                       class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-white/[0.05] dark:hover:text-brand-500 transition-colors duration-200">
+                        @Model.TotalPages
+                    </a>
+                }
+
+                @* Next button *@
+                @if (Model.HasNext)
+                {
+                    <a asp-action="@Model.ActionName" asp-controller="@Model.ControllerName" asp-route-page="@(Model.CurrentPage + 1)" asp-route-pageSize="@Model.PageSize"
+                       class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700 dark:hover:bg-white/[0.05] dark:hover:text-brand-500 transition-colors duration-200">
+                        Next
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                }
+                else
+                {
+                    <span class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600">
+                        Next
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </span>
+                }
+            }
+            else
+            {
+                @* Single page scenario - show simple pagination *@
+                <span class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Previous
+                </span>
+                
+                <span class="inline-flex items-center justify-center w-10 h-10 text-sm font-medium text-white bg-blue-500 border border-blue-500 rounded-lg shadow-sm dark:bg-blue-600 dark:border-blue-600">
+                    1
+                </span>
+                
+                <span class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 border border-gray-300 rounded-lg cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600">
+                    Next
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </span>
+            }
+            </div>
+        </div>
+    </div>
+}
