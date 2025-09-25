@@ -19,7 +19,8 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "esbuild": "^0.25.10",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.25.9",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
   },
@@ -35,7 +36,6 @@
     "apexcharts": "^5.3.5",
     "dropzone": "^6.0.0-beta.2",
     "flatpickr": "^4.6.13",
-    "jsvectormap": "^1.7.0",
-    "lucide": "^0.544.0"
+    "jsvectormap": "^1.7.0"
   }
 }
