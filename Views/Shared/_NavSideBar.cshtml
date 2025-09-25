@@ -4,7 +4,7 @@
 > *@
 <aside
   :class="sidebarToggle ? 'translate-x-0 lg:w-[90px]' : '-translate-x-full'"
-  class="sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-brand-200 bg-brand-950 px-5 dark:border-gray-800 dark:bg-gray-900 lg:static lg:translate-x-0"
+  class="sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-brand-light bg-gradient-brand px-5 dark:border-gray-800 lg:static lg:translate-x-0"
 >
   <!-- SIDEBAR HEADER -->
    <div
@@ -39,7 +39,7 @@
     <nav x-data="{selected: $persist('Dashboard')}">
       <!-- Menu Group -->
       <div>
-        <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400 ">
+        <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-300 ">
           <span
             class="menu-group-title"
             :class="sidebarToggle ? 'lg:hidden' : ''"
@@ -59,7 +59,7 @@
             <a
               asp-controller="Dashboard"
               asp-action="Index"
-              class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
+              class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-white"
               :class=" page === 'dashboard' ? 'menu-item-active' : 'menu-item-inactive'"
             >
               <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:grid-view-outline-rounded"
@@ -75,8 +75,7 @@
             </a>
           </li>
           <!-- End Menu Item Dashboard -->
-
-        
+      
 
           <!-- Menu Item Pages -->
           <li>
@@ -104,17 +103,17 @@
 
             <!-- Dropdown Menu Start -->
             <div
-              class="overflow-hidden transform translate"
+              class="overflow-hidden transform translate "
               :class="(selected === 'Pages') ? 'block' :'hidden'"
             >
               <ul
                 :class="sidebarToggle ? 'lg:hidden' : 'flex'"
-                class="flex flex-col gap-1 mt-2 menu-dropdown pl-9"
+                class="flex flex-col gap-1 mt-2 menu-dropdown pl-9 "
               >
                 <li>
                   <a
                     href="blank.html"
-                    class="menu-dropdown-item group text-gray-300"
+                    class="menu-dropdown-item group text-gray-500"
                     :class="page === 'blank' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
                   >
                     Blank Page
@@ -123,7 +122,7 @@
                 <li>
                   <a
                     href="404.html"
-                    class="menu-dropdown-item group text-gray-300"
+                    class="menu-dropdown-item group text-white/80 hover:text-white hover:bg-white/5"
                     :class="page === 'page404' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
                   >
                     404 Error
@@ -139,7 +138,7 @@
 
       <div> 
 
-          <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-400 ">
+          <h3 class="mb-4 text-xs uppercase leading-[20px] text-gray-300 ">
             <span
               class="menu-group-title"
               :class="sidebarToggle ? 'lg:hidden' : ''"
@@ -171,7 +170,9 @@
                   class="menu-item-text"
                   :class="sidebarToggle ? 'lg:hidden' : ''"
                 >
+
                   Training Evaluation
+
                 </span>
               </a>
             </li>
@@ -180,10 +181,10 @@
                 asp-controller="User"
                 asp-action="Index"
                 class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
-                :class=" page === 'user' ? 'menu-item-active' : 'menu-item-inactive'"
+                :class=" page === 'trainingEvaluationSuperior' ? 'menu-item-active' : 'menu-item-inactive'"
               >
                 <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:person-outline" 
-                  :class="page === 'user' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                  :class="page === 'trainingEvaluationSuperior' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
                 ></i>
 
                 <span
@@ -199,17 +200,17 @@
                 asp-controller="User"
                 asp-action="Index"
                 class="menu-item group relative flex items-center gap-3 px-3 py-2 font-medium rounded-lg text-gray-300"
-                :class=" page === 'user' ? 'menu-item-active' : 'menu-item-inactive'"
+                :class=" page === 'trainingApplicationForm' ? 'menu-item-active' : 'menu-item-inactive'"
               >
                 <i class="iconify w-6 h-6 flex-shrink-0" data-icon="material-symbols-light:person-outline" 
-                  :class="page === 'user' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                  :class="page === 'trainingApplicationForm' ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
                 ></i>
 
                 <span
                   class="menu-item-text"
                   :class="sidebarToggle ? 'lg:hidden' : ''"
                 >
-                  Training Application Form
+                    Training Application Form
                 </span>
               </a>
             </li>
@@ -264,19 +265,5 @@
     </nav>
     <!-- Sidebar Menu -->
 
-    <!-- Promo Box -->
-    @* <div
-      :class="sidebarToggle ? 'lg:hidden' : ''"
-      class="mx-auto mb-10 w-full max-w-60 rounded-2xl bg-gray-50 px-4 py-5 text-center dark:bg-white/[0.03]"
-    >
-      <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">
-        #1 Tailwind CSS Dashboard
-      </h3>
-      <p class="mb-4 text-gray-500 text-theme-sm dark:text-gray-400">
-        Leading Tailwind CSS Admin Template with 400+ UI Component and Pages.
-      </p>
-
-    </div> *@
-    <!-- Promo Box -->
   </div>
 </aside>
