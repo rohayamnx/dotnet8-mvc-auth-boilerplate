@@ -11,7 +11,7 @@
 <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
     @if (TempData["StatusMessage"] is string status && !string.IsNullOrWhiteSpace(status))
     {
-        <div class="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900/40 dark:bg-emerald-900/20 dark:text-emerald-300 px-4 py-3">
+        <div class="mb-4 rounded-lg border border-success-light bg-success-light text-success-dark dark:border-success-dark dark:bg-success-dark/20 dark:text-success-light px-4 py-3">
             <div class="flex items-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -34,7 +34,7 @@
                 <div class="flex items-center gap-3">
                     @if (isActive)
                     {
-                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 text-sm font-semibold border border-emerald-200 dark:border-emerald-700">
+                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-success-light dark:bg-green-900/30 text-success dark:text-success-light text-sm font-semibold border border-success dark:border-success-dark">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
@@ -52,7 +52,7 @@
                     }
                     @if (Model?.User?.EmailConfirmed == true)
                     {
-                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-semibold border border-blue-200 dark:border-blue-700">
+                        <span class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-light dark:bg-blue-900/30 text-brand dark:text-brand-light text-sm font-semibold border border-brand dark:border-brand">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
@@ -71,7 +71,7 @@
     </div>
 
     <div class="w-full">
-        <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-white/[0.03]">
+        <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-surface-light">
             <!-- Header strip -->
             <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 p-8 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex flex-col items-center gap-2 text-center">
@@ -99,7 +99,7 @@
                         @if (Model?.User?.LockoutEnabled == true && Model?.User?.LockoutEnd.HasValue == true && Model.User.LockoutEnd.Value > DateTimeOffset.UtcNow)
                         {
                             <form asp-action="Unlock" asp-route-id="@Model?.User?.Id" method="post">
-                                <button type="submit" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold transition-all duration-200">
+                                <button type="submit" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-success hover:bg-success-dark text-white text-sm font-semibold transition-all duration-200">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                     </svg>
@@ -136,8 +136,8 @@
 
                     <div class="p-6">
                         <div class="flex items-center mb-6">
-                            <div class="p-2.5 bg-emerald-100 dark:bg-emerald-900/30">
-                                <svg class="w-5 h-5 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="p-2.5 bg-success-light dark:bg-green-500/30">
+                                <svg class="w-5 h-5 text-success dark:text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6m8 0H8"></path>
                                 </svg>
                             </div>
@@ -184,7 +184,7 @@
 
         <!-- Security and Account Status -->
         <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-white/[0.03]">
+            <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-surface-light">
                 <div class="border-b border-gray-200 py-4 px-7 dark:border-gray-800">
                     <h3 class="font-semibold text-gray-700 dark:text-gray-400">Security Status</h3>
                 </div>
@@ -195,7 +195,7 @@
                                 <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Email Status</span>
                                 @if (Model?.User?.EmailConfirmed == true)
                                 {
-                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 py-1 px-2 text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-success-light dark:bg-green-900/30 py-1 px-2 text-sm font-medium text-success dark:text-success-light">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                         </svg>
@@ -204,7 +204,7 @@
                                 }
                                 else
                                 {
-                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-red-100 dark:bg-red-900/30 py-1 px-2 text-sm font-medium text-red-700 dark:text-red-300">
+                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-error-light dark:bg-error-900/30 py-1 px-2 text-sm font-medium text-error dark:text-error-light">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
@@ -216,7 +216,7 @@
                                 <span class="text-sm font-medium text-gray-500 dark:text-gray-400">2FA Status</span>
                                 @if (Model?.User?.TwoFactorEnabled == true)
                                 {
-                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 py-1 px-2 text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-success-light dark:bg-green-900/30 py-1 px-2 text-sm font-medium text-success dark:text-success-light">
                                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                         </svg>
@@ -225,7 +225,7 @@
                                 }
                                 else
                                 {
-                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 py-1 px-2 text-sm font-medium text-amber-700 dark:text-amber-300">
+                                    <span class="inline-flex items-center gap-1.5 rounded-lg bg-red-100 dark:bg-red-900/30 py-1 px-2 text-sm font-medium text-red-700 dark:text-red-300">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
@@ -260,7 +260,7 @@
                 </div>
             </div>
 
-            <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-white/[0.03]">
+            <div class="rounded-xl border border-gray-200 bg-white shadow-default dark:border-gray-800 dark:bg-surface-light">
                 <div class="border-b border-gray-200 py-4 px-7 dark:border-gray-800">
                     <h3 class="font-semibold text-gray-700 dark:text-gray-400">Account Status</h3>
                 </div>
