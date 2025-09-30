@@ -33,7 +33,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60); // adjust as needed
     options.Events.OnRedirectToLogin = context =>
     {
-        // Preserve original return url automatically if needed (optional customization)
+        // Ensure we redirect to login page
+        context.Response.Redirect("/Account/Login");
         return Task.CompletedTask;
     };
 });
